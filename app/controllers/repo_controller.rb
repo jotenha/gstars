@@ -1,4 +1,3 @@
-
 class RepoController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
@@ -10,15 +9,11 @@ class RepoController < ApplicationController
     response = github_service.get_repos
 
     if response.success?
+      user = User.find_or_create_by(name: username)
       repositories = JSON.parse(response.body).map do |repo|
-        {
-          name: repo['name'],
-          stars: repo['stargazers_count']
-        }
+        user.repos.create(name: repo['name'], stars: repo['stargazers_count'])
       end
-      render json: repositories, status: :ok
-    else
-      render json: { error: "Failed to fetch repositories for user: #{username}" }, status: :unprocessable_entity
+    render json: { message: "User and repositories saved successfully" }, status: :ok
     end
   end
 end
