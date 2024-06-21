@@ -1,8 +1,7 @@
-# app/controllers/RepoController.rb
+
 class RepoController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
-#require_dependency 'gh_get_service'
 
   def create
     username = params[:username]
@@ -21,20 +20,5 @@ class RepoController < ApplicationController
     else
       render json: { error: "Failed to fetch repositories for user: #{username}" }, status: :unprocessable_entity
     end
-  end
-end
-
-class GithubService
-
-  include HTTParty
-
-  base_uri 'https://api.github.com'
-
-  def initialize(username)
-    @username = username
-  end
-
-  def get_repos
-    self.class.get("/users/#{@username}/repos")
   end
 end
