@@ -1,9 +1,5 @@
 require 'test_helper'
-class GithubJobTest < Minitest::Test
-  def test_example
-    skip "add some examples to (or delete) #{__FILE__}"
-  end
-end
+
 class GithubJobTest < Minitest::Test
   def setup
     @username = 'test_user'
