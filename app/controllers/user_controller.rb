@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:get_users]
+  skip_before_action :verify_authenticity_token
 
   def get_users
     users = User.all.map do |user|
@@ -16,5 +16,14 @@ class UserController < ApplicationController
     else
       render json: { message: "User not found" }, status: :not_found
     end
+  end
+
+  #could probably do more filtering, like get repos with stars > x
+  #users with 10+ stars, etc
+
+  def remove
+    username = params[:username]
+    RemoveuserJob.perform_later(username)
+    render json: { message: "Enqueued, user will be deleted soon" }, status: :ok
   end
 end
