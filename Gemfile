@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.3.3"
 
+gem 'dotenv', '~> 3.1', '>= 3.1.2'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 
@@ -56,6 +58,7 @@ gem 'sidekiq'
 #[notes to self]
 #gonna use sidekiq-cron to schedule jobs to update the database periodically
 gem 'sidekiq-cron', '~> 1.12'
+
 
 
 group :development, :test do

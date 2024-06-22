@@ -21,9 +21,21 @@ class UserController < ApplicationController
   #could probably do more filtering, like get repos with stars > x
   #users with 10+ stars, etc
 
+  #token checking should be done in a middleware or a before_action but for the sake of simplicity/visibility
+  #I'm doing it here
+
   def remove
     username = params[:username]
-    RemoveuserJob.perform_later(username)
-    render json: { message: "Enqueued, user will be deleted soon" }, status: :ok
+    if request.headers['Admin-Token']
+      token = request.headers['Admin-Token']
+      if token == ENV['ADMIN_TOKEN']
+        RemoveuserJob.perform_later(username)
+        render json: { message: "Enqueued, user will be deleted soon" }, status: :ok
+      else
+        render json: { error: "Forbidden - Invalid token"}, status: :forbidden
+      end
+    else
+      render json: { error: "Admin-Token header missing" }, status: :bad_request
+    end
   end
 end
