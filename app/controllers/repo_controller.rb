@@ -8,6 +8,6 @@ class RepoController < ApplicationController
     Rails.logger.info "Username on controller: #{username}"
     #GithubJob.perform_async(username)
     GithubJob.perform_later(username)
-    render json: { message: "Job enqueued" }, status: :ok
+    render json: { message: "Enqueued, check user soon" }, status: :ok
   end
 end
