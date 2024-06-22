@@ -16,4 +16,11 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_not_empty response.body
   end
 
+  test "should return not found for non-existent user" do
+    username = 'non_existent_user'
+    get get_user_path(username: username)
+    assert_response :not_found
+    assert_equal response.content_type, 'application/json'
+    assert_equal response.body, { message: "User not found" }.to_json
+  end
 end
