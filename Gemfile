@@ -53,6 +53,11 @@ gem 'httparty', '~> 0.22.0'
 #bundle exec sidekiq
 gem 'sidekiq'
 
+#[notes to self]
+#gonna use sidekiq-cron to schedule jobs to update the database periodically
+gem 'sidekiq-cron', '~> 1.12'
+
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
