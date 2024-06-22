@@ -23,4 +23,23 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_equal response.content_type, 'application/json'
     assert_equal response.body, { message: "User not found" }.to_json
   end
+  test "should remove user" do
+    username = 'test_user'
+    assert_enqueued_with(job: RemoveuserJob, args: [username]) do
+      post remove_user_path(username: username)
+    end
+    assert_response :success
+    assert_equal response.content_type, 'application/json'
+    assert_equal response.body, { message: "Enqueued, user will be deleted soon" }.to_json
+  end
+
+  test "should return not found for non-existent user" do
+  username = 'non_existent_user'
+  assert_no_enqueued_jobs do
+    post remove_user_path(username: username)
+  end
+  assert_response :not_found
+  assert_equal response.content_type, 'application/json'
+  assert_equal response.body, { message: "User not found" }.to_json
+  end
 end
