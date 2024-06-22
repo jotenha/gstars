@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :get_user_ghrepos, only: [:create], controller: 'repo'
+  resources :save_user_ghrepos, only: [:create], controller: 'repo'
+  #get all users and their repos
+  get 'get_users', to: 'user#get_users'
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
