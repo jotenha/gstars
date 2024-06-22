@@ -46,6 +46,13 @@ gem "bootsnap", require: false
 
 gem 'httparty', '~> 0.22.0'
 
+#[notes to self]
+#rails itself stores jobs in ram, so if the server goes down, the jobs are lost.
+#sidekiq is a gem that allows to run background jobs stored in redis/ so if it backend crashes jobs are fine
+#it uses redis to store the jobs //redis-server redis-cli
+#bundle exec sidekiq
+gem 'sidekiq'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
