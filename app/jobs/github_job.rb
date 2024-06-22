@@ -2,6 +2,9 @@ class GithubJob < ApplicationJob
   #taks priority?
   queue_as :default
 
+  #in case of per-job backend
+  #self.queue_adapter = :sidekiq
+
   def perform(username)
     Rails.logger.info "Username on job: #{username}"
     github_service = GithubService.new(username)
