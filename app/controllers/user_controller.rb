@@ -7,4 +7,14 @@ class UserController < ApplicationController
     end
     render json: users, status: :ok
   end
+
+  def get_user
+    username = params[:username]
+    user = User.find_by(name: username)
+    if user
+      render json: { name: user.name, repos: user.repos.map{|repo| { name: repo.name, stars: repo.stars}}}, status: :ok
+    else
+      render json: { message: "User not found" }, status: :not_found
+    end
+  end
 end
