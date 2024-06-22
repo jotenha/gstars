@@ -11,17 +11,3 @@ class RepoController < ApplicationController
     render json: { message: "Job enqueued" }, status: :ok
   end
 end
-
-
-#old controller
-
-#github_service = GithubService.new(username)
-#    response = github_service.get_repos
-#
-#    if response.success?
-#      user = User.find_or_create_by(name: username)
-#      repositories = JSON.parse(response.body).map do |repo|
-#        user.repos.create(name: repo['name'], stars: repo['stargazers_count'])
-#      end
-#    render json: { message: "User and repositories saved successfully" }, status: :ok
-#    end
