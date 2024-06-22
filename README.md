@@ -1,24 +1,8 @@
-# README
+# gstars
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
+**gstars** is a Ruby on Rails application designed to save a user, their repos and it's stars on a database. This project aims to solve the CW tecnical assessment challenge.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Prerequisites
+- Ruby [3.3.3]
+- Rails [rake, 13.2.1]
