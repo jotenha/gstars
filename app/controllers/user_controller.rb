@@ -7,3 +7,4 @@ class UserController < ApplicationController
     end
     render json: users, status: :ok
   end
+end
