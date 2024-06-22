@@ -7,3 +7,4 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_equal response.content_type, 'application/json'
     assert_not_empty response.body
   end
+end
