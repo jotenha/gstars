@@ -59,6 +59,7 @@ gem 'sidekiq'
 #gonna use sidekiq-cron to schedule jobs to update the database periodically
 gem 'sidekiq-cron', '~> 1.12'
 
+gem 'pg', '~> 1.5', '>= 1.5.6'
 
 
 group :development, :test do
